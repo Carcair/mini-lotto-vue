@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <div></div>
+      <home-btn v-bind:path="paths.game">Play</home-btn>
+      <home-btn v-bind:path="paths.howTo">Tutorial</home-btn>
+      <home-btn v-bind:path="paths.about">About</home-btn>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HomeBtn from './../components/btn/HomeBtn';
+import {mapState} from 'vuex';
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+    components: {
+        HomeBtn
+    },
+    computed: {
+        ...mapState([
+            'paths'
+        ])
+    }
 }
 </script>
+
+<style scoped>
+    .home {
+        display: grid;
+        grid-template-rows: 20% 20% 20% 20%;
+        justify-content: space-around;
+        text-align: center;
+    }
+</style>
