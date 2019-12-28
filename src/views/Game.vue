@@ -1,22 +1,31 @@
 <template>
   <div class="game">
-    <drum />
-    <fiver />
-    <last-ball />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Drum from './../components/game-layout/Drum.vue'
-import Fiver from './../components/game-layout/Fiver.vue'
-import LastBall from './../components/game-layout/LastBall.vue'
+import {mapState} from 'vuex';
 
 export default {
   name: 'Game',
-  components: {
-    Drum,
-    Fiver,
-    LastBall
+  computed: {
+    ...mapState([
+      'socket',
+      'numbers',
+      'counter'
+    ])
+  },
+  created() {
+    if(this.counter <= 0){
+      this.$router.push('game-round');
+    }
+    this.startCounter();
+  },
+  methods: {
+    startCounter(){
+      this.socket.emit('START_COUNTER');
+    }
   }
 }
 </script>
@@ -24,9 +33,6 @@ export default {
 <style scoped>
   .game {
     display: grid;
-    grid-gap: 1vh; padding: 1vh;
-    grid-template-columns: 13vw 13vw 13vw 13vw 13vw 13vw;
-    grid-template-rows: 13vw 13vw 13vw;
-    justify-content: space-evenly;
+    justify-content: space-around; align-content: space-around;
   }
 </style>

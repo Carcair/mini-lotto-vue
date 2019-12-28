@@ -1,7 +1,7 @@
 <template>
   <div class="home">
       <div></div>
-      <home-btn v-bind:path="paths.game">Play</home-btn>
+      <home-btn v-bind:path="paths.gameCounter">Play</home-btn>
       <home-btn v-bind:path="paths.howTo">Tutorial</home-btn>
       <home-btn v-bind:path="paths.about">About</home-btn>
   </div>
