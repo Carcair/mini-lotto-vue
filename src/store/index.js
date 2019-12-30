@@ -19,17 +19,28 @@ export default new Vuex.Store({
     counter: 120,
     numbers: [],
   },
+  getters: {
+    fiver(state) {
+      return state.numbers.slice(0, 5);
+    },
+    lastBall(state) {
+      return state.numbers.slice(6, state.numbers.length);
+    }
+  },
   mutations: {
     mutate_counter(state, argument) {
       state.counter = argument[0];
     },
     mutate_numbers(state, argument) {
-      state.numbers = argument[0];
+      state.numbers = argument;
     }
   },
   actions: {
     action_counter(context, argument) {
       context.commit('mutate_counter', argument);
+    },
+    action_numbers(context, argument) {
+      context.commit('mutate_numbers', argument);
     }
   },
   modules: {

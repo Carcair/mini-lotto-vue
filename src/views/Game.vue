@@ -16,17 +16,12 @@ export default {
       'counter'
     ])
   },
-  created() {
-    if(this.counter <= 0){
+  mounted() {
+    this.socket.emit('START_COUNTER')
+    if(this.counter <= 0) {
       this.$router.push('game-round');
     }
-    this.startCounter();
   },
-  methods: {
-    startCounter(){
-      this.socket.emit('START_COUNTER');
-    }
-  }
 }
 </script>
 

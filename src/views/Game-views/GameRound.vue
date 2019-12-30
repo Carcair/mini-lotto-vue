@@ -10,7 +10,6 @@
 import Drum from './../../components/game-layout/Drum.vue'
 import Fiver from './../../components/game-layout/Fiver.vue'
 import LastBall from './../../components/game-layout/LastBall.vue'
-import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'GameRound',
@@ -19,23 +18,6 @@ export default {
     Fiver,
     LastBall
   },
-  computed: {
-    ...mapState([
-      'socket',
-      'numbers'
-    ])
-  },
-  methods: {
-    ...mapMutations([
-      'mutate_numbers'
-    ])
-  },
-  mounted() {
-    this.socket.on('NUMBERS', (data) => {
-      this.mutate_numbers([data]);
-    })
-  }
-
 }
 </script>
 

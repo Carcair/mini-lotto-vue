@@ -1,19 +1,21 @@
 <template>
   <div class="fiver">
-    <fiver-btn/>
-    <fiver-btn/>
-    <fiver-btn/>
-    <fiver-btn/>
-    <fiver-btn/>
+    <fiver-btn v-bind:key="number" v-for="number in fiver">{{number}}</fiver-btn>
   </div>
 </template>
 
 <script>
 import FiverBtn from './../btn/FiverBtn.vue';
+import {mapGetters} from 'vuex';
 export default {
   name: "Fiver",
   components: {
     FiverBtn
+  },
+  computed: {
+    ...mapGetters([
+      'fiver'
+    ])
   }
 }
 </script>

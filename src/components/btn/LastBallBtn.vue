@@ -1,6 +1,6 @@
 <template>
   <div class="lastBallBtn">
-    <button>99</button>
+    <button><slot></slot></button>
   </div>
 </template>
 

@@ -1,26 +1,22 @@
 <template>
   <div class="lastBall">
-    <last-ball-btn v-bind:key="broj" v-for="broj in testniNiz" />
+    <last-ball-btn v-bind:key="number" v-for="number in lastBall">{{number}}</last-ball-btn>
   </div>
 </template>
 
 <script>
 import LastBallBtn from './../btn/LastBallBtn.vue';
+import {mapGetters} from 'vuex';
 
 export default {
   name: 'LastBall',
   components: {
     LastBallBtn
   },
-  data() {
-    return {
-      testniNiz: []
-    }
-  },
-  created() {
-    for(let i = 1; i <= 35; i++){
-      this.testniNiz.push(i);
-    }
+  computed: {
+    ...mapGetters([
+      'lastBall'
+    ])
   }
 }
 </script>
@@ -33,7 +29,7 @@ export default {
     display: grid;
     justify-content: space-evenly;
     align-content: space-evenly;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     grid-template-rows: auto auto auto auto auto;
   }
 </style>

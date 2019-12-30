@@ -32,7 +32,7 @@ export default {
   mounted() {
     this.socket.on('COUNTER', (data) => {
       this.action_counter([data]);
-      if(data == 0){
+      if(data <= 0){
         this.$router.push('game-round');
       }
     })

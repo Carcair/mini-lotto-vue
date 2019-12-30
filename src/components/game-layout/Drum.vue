@@ -2,19 +2,40 @@
   <div class="drum" v-on:click="show=!show">
     <transition name="roll">
       <div v-if="show" id="animation">
-        <p>1</p>
+        <p>{{lastNum}}</p>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex';
+
 export default {
   name: 'Drum',
   data() {
     return {
-      show: true
+      show: true,
     }
+  },
+  computed: {
+    ...mapState([
+      'socket',
+      'numbers'
+    ]),
+    lastNum() {
+      return this.numbers[this.numbers.length - 1];
+    }
+  },
+  methods: {
+    ...mapActions([
+      'action_numbers'
+    ])
+  },
+  mounted() {
+    this.socket.on('NUMBER', (data) => {
+      this.action_numbers(data);
+    });
   }
 }
 </script>
