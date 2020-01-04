@@ -1,6 +1,7 @@
 <template>
   <div class="lastBallBtn">
-    <button><slot></slot></button>
+    <button><slot name="number"></slot></button>
+    <span><slot name="cash"></slot></span>
   </div>
 </template>
 
@@ -26,5 +27,9 @@ export default {
     0% {transform: scale(1);}
     50% {transform: scale(1.25);}
     100% {transform: scale(1);}
+  }
+
+  span {
+    font-weight: bold;
   }
 </style>

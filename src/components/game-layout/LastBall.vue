@@ -1,12 +1,15 @@
 <template>
   <div class="lastBall">
-    <last-ball-btn v-bind:key="number" v-for="number in lastBall">{{number}}</last-ball-btn>
+    <last-ball-btn v-bind:key="number" v-for="(number, index) in winPool">
+      <template v-slot:number>{{lastBall[index]}}</template>
+      <template v-slot:cash>{{number}}</template>
+    </last-ball-btn>
   </div>
 </template>
 
 <script>
 import LastBallBtn from './../btn/LastBallBtn.vue';
-import {mapGetters} from 'vuex';
+import {mapGetters, mapState} from 'vuex';
 
 export default {
   name: 'LastBall',
@@ -16,6 +19,9 @@ export default {
   computed: {
     ...mapGetters([
       'lastBall'
+    ]),
+    ...mapState([
+      'winPool'
     ])
   }
 }
@@ -29,7 +35,7 @@ export default {
     display: grid;
     justify-content: space-evenly;
     align-content: space-evenly;
-    grid-template-columns: auto auto auto auto auto auto;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto;
   }
 </style>

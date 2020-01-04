@@ -18,13 +18,17 @@ export default new Vuex.Store({
     socket: io('localhost:3000'),
     counter: 120,
     numbers: [],
+    winPool: [
+      10000, 7500, 3000, 1500, 1000, 500, 300, 200, 150, 100, 75, 65, 60, 55, 50, 35, 30,
+      25, 20, 15, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+    ]
   },
   getters: {
     fiver(state) {
       return state.numbers.slice(0, 5);
     },
     lastBall(state) {
-      return state.numbers.slice(6, state.numbers.length);
+      return state.numbers.slice(5, state.numbers.length);
     }
   },
   mutations: {
