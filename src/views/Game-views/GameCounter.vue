@@ -27,6 +27,7 @@ export default {
     }
   },
   mounted() {
+    this.socket.emit('PLAY');
     this.socket.on('COUNTER', (data) => {
       this.action_counter([data]);
       if(data <= 0){

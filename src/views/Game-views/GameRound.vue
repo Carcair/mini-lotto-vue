@@ -25,7 +25,10 @@ export default {
     ])
   },
   mounted() {
-    this.socket.emit('START_ROUND');
+    this.socket.emit('PLAY');
+    this.socket.on('ENDGAME', () => {
+      this.$router.push('end-game');
+    })
   }
 }
 </script>

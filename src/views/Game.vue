@@ -12,15 +12,35 @@ export default {
   computed: {
     ...mapState([
       'socket',
-      'numbers',
-      'counter'
     ])
   },
   mounted() {
-    this.socket.emit('START_COUNTER')
-    if(this.counter <= 0) {
-      this.$router.push('game-round');
-    }
+    this.socket.emit('CHECK_STATE');
+    this.socket.on('STATE', (data) => {
+      switch(data) {
+        case 0:
+          this.$router.push('game-counter');
+          break;
+        case 1:
+          this.$router.push('game-counter');
+          break;
+        case 2:
+          this.$router.push('game-round');
+          break;
+        case 3:
+          this.$router.push('game-round');
+          break;
+        case 4:
+          this.$router.push('game-round');
+          break;
+        case 5:
+          this.$router.push('end-game');
+          break;
+        default:
+          this.$router.push('/not-found');
+          break;
+      }
+    })
   },
 }
 </script>
